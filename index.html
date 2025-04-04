@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en-US">
+   <head>
+      <title>FWHL - Free Website Hosters List</title>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+      <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/5339/5339184.png">
+      <link rel="preconnect" href="https://fonts.googleapis.com/">
+      <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&amp;display=swap" rel="stylesheet">
+      <meta name="title" content="FWHL - Free Website Hosters List">
+      <meta name="description" content="The biggest site with all the free website hosters. Updated all the time!">
+      <meta name="keywords" content="fmhl, fwhl, website, hosting, host, hosters, free, us, france, germany, sweden, britain">
+      <meta name="robots" content="index, follow">
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="language" content="English">
+      <meta name="revisit-after" content="7 days">
+      <meta name="author" content="FWHL - Devloo - Myuui">
+      <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+         :root {
+         --color-primary-100: #80b3ff;
+         --color-primary-200: #90bbff;
+         --color-primary-300: #a0c3ff;
+         --color-primary-400: #afccff;
+         --color-primary-500: #bdd4ff;
+         --color-primary-600: #cadcff;
+         --color-surface-100: #1c1a1a;
+         --color-surface-200: #312f2f;
+         --color-surface-300: #474545;
+         --color-surface-400: #5f5d5d;
+         --color-surface-500: #777676;
+         --color-surface-600: #919090;
+         --color-surface-mixed-100: #26272d;
+         --color-surface-mixed-200: #3a3b41;
+         --color-surface-mixed-300: #505156;
+         --color-surface-mixed-400: #67676c;
+         --color-surface-mixed-500: #7e7f83;
+         --color-surface-mixed-600: #97979a;
+         --color-text-secondary: #e6e6e6;
+         }
+         div.scroll {
+         margin: 4px, 4px;
+         padding: 4px;
+         overflow-x: auto;
+         overflow-y: hidden;
+         white-space: nowrap;
+         }
+         body {
+         font-family: "DM Sans", sans-serif;
+         background-color: #1e2124    ;
+         padding: 24px;
+         color: #DAD7CD;
+         }
+         .alert-secondary {
+         background-color: #424549    ;
+         border-color: transparent;
+         color: var(--color-text-secondary);
+         }
+         .btn-secondary {
+         background-color: #7289da;
+         color: var(--color-text-secondary);
+         border-color: transparent;
+         margin-right: 4px;
+         }
+         .btn-secondary:hover {
+         background-color: #677dc9;
+         border-color: transparent;
+         } 
+         .container {
+         background-color: #282b30    ;
+         padding: 20px 30px;
+         border-radius: 15px;
+         align-items: center;
+         color: #fff;
+         transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+         white-space: nowrap;
+         display: block;
+         text-overflow: ellipsis;
+         overflow: hidden;
+         }
+         .bg-dark {
+         background-color: #292929;
+         color: #fff;
+         }
+         .icon-box {
+         width: 100px;
+         height: 100px;
+         background-color: #424549;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         border-radius: 10px;
+         margin-right: 20px;
+         left: -20px;
+         transition: background-color 0.3s ease-in-out;
+         }
+         .icon-box img {
+         width: 70%;
+         height: 70%;
+         }
+         .icon-box:hover {
+         background-color: #677dc9;
+         }
+         .content {
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         }
+         .title {
+         font-size: 2em;
+         font-weight: bold;
+         margin-bottom: 5px;
+         position: relative;
+         animation: fadeIn 1s ease-in-out;
+         }
+         .text-line {
+         display: flex;
+         align-items: center;
+         margin: 10px 0;
+         font-size: 1em;
+         position: relative;
+         animation: fadeInUp 1s ease-in-out;
+         background-color: #424549;
+         border-radius: 5px;
+         padding: 6px;
+         }
+         .text-line span {
+         margin: 0 10px;
+         }
+         .text-highlight {
+         color: #8a9ab6;
+         font-weight: bold;
+         }
+         .rating {
+         display: flex;
+         align-items: center;
+         margin: 0px 5px;
+         }
+         .rating span {
+         margin-left: 4px;
+         }
+         .rating .star {
+         color: #ffd700;
+         }
+         .grid-container {
+         display: grid;
+         grid-template-columns: repeat(3, 1fr);
+         grid-gap: 10px;
+         }
+         footer {
+         background-color: #282b30;
+         color: #fff;
+         padding: 1% 0; 
+         }
+         .footer-content {
+         display: flex;
+         flex-wrap: wrap;
+         justify-content: space-around;
+         }
+         .footer-section {
+         flex: 1;
+         margin: 0 1%; 
+         }
+         .footer-section h2 {
+         margin-bottom: 3%; 
+         }
+         .footer-section ul {
+         list-style: none;
+         padding: 0;
+         }
+         .footer-section ul li {
+         margin-bottom: 2%; 
+         }
+         .footer-section ul li a {
+         color: #fff;
+         text-decoration: none;
+         }
+         .footer-bottom {
+         text-align: center;
+         margin-top: 2%; 
+         }
+         .custom-arrow {
+         border: 1px solid transparent;
+         background: url(https://cdn-icons-png.flaticon.com/512/274/274976.png) right no-repeat;
+         background-size: 30px 30px;
+         }
+         .form-control::placeholder {
+         color: white;
+         opacity: 1;
+         }
+         .swal2-popup {
+         border-radius: 15px;
+         background-color: #333;
+         width: max-content;
+         }
+         .swal2-modal {
+         border-radius: 15px;
+         background-color: #333;
+         width: max-content;
+         }
+         ::-webkit-scrollbar {
+         width: 10px;
+         }
+         ::-webkit-scrollbar-track {
+         background: transparent;
+         }
+         ::-webkit-scrollbar-thumb {
+         background: #282b30;
+         }
+         ::-webkit-scrollbar-thumb:hover {
+         background: #677dc9;
+         }
+         .container p {
+         width: 100%;
+         text-wrap: wrap;
+         }
+         /* Flickering effect */
+         @keyframes flicker {
+         0%, 100% {
+         background-color: #ff4d4d;
+         }
+         50% {
+         background-color: transparent;
+         }
+         }
+         .flicker-box {
+         animation: flicker 0.5s infinite;
+         position: relative;
+         }
+         .warning {
+         position: absolute;
+         top: -25px;
+         left: 0;
+         right: 0;
+         background-color: #ff4d4d;
+         color: white;
+         padding: 5px;
+         text-align: center;
+         font-weight: bold;
+         border-radius: 5px;
+         opacity: 1;
+         transition: opacity 0.3s ease;
+         }
+         /* Warning box above the container */
+         .warning-box {
+         position: absolute;
+         top: -50px;
+         left: 50%;
+         transform: translateX(-50%);
+         background-color: rgba(255, 77, 77, 0.8); /* Red with 80% opacity */
+         color: white;
+         padding: 10px;
+         border-radius: 5px;
+         text-align: center;
+         font-weight: bold;
+         z-index: 10; /* Ensure it's on top of other elements */
+         white-space: nowrap;
+         }
+      </style>
+      <style>
+         @media only screen and (max-width: 600px) {
+         #img-discord {
+         width: 100%;
+         }
+         .grid-container {
+         display: grid;
+         grid-template-columns: repeat(1, 1fr);
+         grid-gap: 10px;
+         }
+         .container {
+         overflow-x: auto;
+         }
+         #floatingElement2 {
+         display: none;
+         }
+         #floatingElement {
+         left: 0;
+         right: 0;
+         max-width: 90%;
+         margin: 0 auto;
+         }
+         .text-line {
+         overflow-x: auto;
+         }
+         .swal2-html-container {
+         max-width: 100%;
+         overflow-x: auto;
+         white-space: nowrap;
+         padding: 10px;
+         }
+         }
+      </style>
+   </head>
+   <body>
+      <div>
+      <div>
+      <main>
+      <div>
+         <div class="markdown-body card" style="padding: 12px;  background-color: #282b30    ; border-radius: 15px;">
+            <div class="alert alert-simple alert-secondary text-center" style="font-size: 36px;">
+               <h1>FWHL - Free Website Hosts List</h1>
+            </div>
+            <div class="col-sm-12">
+               <div style="display: flex; justify-content: center; align-items: center;">
+               </div>
+            </div>
+            </section>
+            <div class="alert alert-simple alert-secondary text-center">
+               <h2 style="color: white;">Our request / modify form has moved to discord, please join our discord to submit requests.</h2>
+               <a onclick="window.open('https://discord.gg/QmgAFzasaP');" target="_blank" class="btn btn-secondary">Join Discord</a>
+            </div>
+            <span> 
+            </span>
+         </div>
+      </div>
+      <p></p>
+      <h1></h1>
+      <div id="filter-options" class="markdown-body card" style="padding: 12px;  background-color: #282b30    ; border-radius: 15px;">
+         <label for="filter-select" style="color: var(--color-text-secondary); font-size: 28px;">Search provider:</label>
+         <input type="text" id="search-input" placeholder="Search..." class="form-control text-white" style="background-color: #424549; border: none;">
+      </div>
+      <p></p>
+      <h1></h1>
+      <div class="grid-container">
+          <div class="container">
+            <div class="icon-box">
+               <img src="https://cdn.discordapp.com/icons/870197933197369394/bf0db9a1423529406455148e14550948.webp" alt="Icon">
+            </div>
+            <div class="content">
+               <div class="title">Cloudcode</div>
+               <div class="text-line" style="height: 100%;">
+                  <p>Notes: Hey there :) & new addition to the site!</p>
+               </div>
+               <div class="btn-toolbar">
+                  <a class="btn btn-secondary" href="https://discord.gg/cloudcode" onclick="#" target="_blank">Get Started</a> 
+               </div>
+            </div>
+         </div>
+         <div class="container">
+            <div class="icon-box">
+               <img src="https://pages.cloudflare.com/favicon.ico" alt="Icon">
+            </div>
+            <div class="content">
+               <div class="title">Cloudflare Pages</div>
+               <div class="text-line" style="height: 100%;">
+                  <p>Notes: 1 build at a time, 500 builds per month, 100 custom domains per project, Unlimited sites, Unlimited static requests, Unlimited bandwidth!</p>
+               </div>
+               <div class="btn-toolbar">
+                  <a class="btn btn-secondary" href="https://pages.cloudflare.com/" onclick="#" target="_blank">Get Started</a> 
+               </div>
+            </div>
+         </div>
+         <div class="container">
+            <div class="icon-box">
+               <img src="https://github.com/fluidicon.png" alt="Icon">
+            </div>
+            <div class="content">
+               <div class="title">Github Pages</div>
+               <div class="text-line" style="height: 100%;">
+                  <p>Notes: Github Repo Linking, Unlimited sites, Unlimited static requests, Unlimited bandwidth!</p>
+               </div>
+               <div class="btn-toolbar">
+                  <a class="btn btn-secondary" href="https://pages.github.com/" onclick="#" target="_blank">Get Started</a> 
+               </div>
+            </div>
+         </div>
+         <div class="container">
+            <div class="icon-box">
+               <img src="https://www.infinityfree.com/images/favicon.ico" alt="Icon">
+            </div>
+            <div class="content">
+               <div class="title">InfinityFree</div>
+               <div class="text-line" style="height: 100%;">
+                  <p>Notes: Fastest Free Hosting, 99.9% Uptime, Unlimited Hosting, No Ads on Your Site, Host Any Domain.</p>
+               </div>
+               <div class="btn-toolbar">
+                  <a class="btn btn-secondary" href="https://www.infinityfree.com/" onclick="#" target="_blank">Get Started</a> 
+               </div>
+            </div>
+         </div>
+         <div class="container">
+            <div class="icon-box">
+               <img src="https://assets.vercel.com/image/upload/q_auto/front/favicon/vercel/144x144.png" alt="Icon">
+            </div>
+            <div class="content">
+               <div class="title">Vercel</div>
+               <div class="text-line" style="height: 100%;">
+                  <p>Notes: For more advanced users.</p>
+               </div>
+               <div class="btn-toolbar">
+                  <a class="btn btn-secondary" href="https://vercel.com/" onclick="#" target="_blank">Get Started</a> 
+               </div>
+            </div>
+         </div>
+         <div class="container">
+            <div class="icon-box">
+               <img src="https://www.netlify.com/favicon/icon.svg" alt="Icon">
+            </div>
+            <div class="content">
+               <div class="title">Netlify</div>
+               <div class="text-line" style="height: 100%;">
+                  <p>Notes: Easy to use, static hosting, hosting from github repo.</p>
+               </div>
+               <div class="btn-toolbar">
+                  <a class="btn btn-secondary" href="https://www.netlify.com/" onclick="#" target="_blank">Get Started</a> 
+               </div>
+            </div>
+         </div>
+         <div class="container">
+            <div class="icon-box">
+               <img src="https://srht.site/logo.svg" alt="Icon">
+            </div>
+            <div class="content">
+               <div class="title">SourceHut Pages</div>
+               <div class="text-line" style="height: 100%;">
+                  <p>Notes: Static hosting.</p>
+               </div>
+               <div class="btn-toolbar">
+                  <a class="btn btn-secondary" href="https://srht.site/" onclick="#" target="_blank">Get Started</a> 
+               </div>
+            </div>
+         </div>
+         <div class="container">
+            <div class="icon-box">
+               <img src="https://glitch.com/favicon.ico" alt="Icon">
+            </div>
+            <div class="content">
+               <div class="title">Glitch Hosting</div>
+               <div class="text-line" style="height: 100%;">
+                  <p>Notes: Easy to use, static hosting, hosting from github repo.</p>
+               </div>
+               <div class="btn-toolbar">
+                  <a class="btn btn-secondary" href="https://glitch.com/" onclick="#" target="_blank">Get Started</a> 
+               </div>
+            </div>
+         </div>
+         <div class="container">
+            <div class="icon-box">
+               <img src="https://www.biz.nf/buts/biznf_50x50.png" alt="Icon">
+            </div>
+            <div class="content">
+               <div class="title">biz.nf</div>
+               <div class="text-line" style="height: 100%;">
+                  <p>Notes: Free Domain Name Registration, 1-Click Scripts Installer, Joomla, and more!</p>
+               </div>
+               <div class="btn-toolbar">
+                  <a class="btn btn-secondary" href="https://www.biz.nf/" onclick="#" target="_blank">Get Started</a> 
+               </div>
+            </div>
+         </div>
+         <div class="container">
+            <div class="icon-box">
+               <img src="https://www.wix.com/favicon.ico" alt="Icon">
+            </div>
+            <div class="content">
+               <div class="title">Wix</div>
+               <div class="text-line" style="height: 100%;">
+                  <p>Notes: Easy to use, drag and drop.</p>
+               </div>
+               <div class="btn-toolbar">
+                  <a class="btn btn-secondary" href="https://www.wix.com/" onclick="#" target="_blank">Get Started</a> 
+               </div>
+            </div>
+         </div>
+         <div class="container">
+            <div class="icon-box">
+               <img src="https://www.yola.com/ws/media-library/b2f186c3ff594f7b8a057f2fdbf077f8/yola-ukraine-logo.png" alt="Icon">
+            </div>
+            <div class="content">
+               <div class="title">Yola</div>
+               <div class="text-line" style="height: 100%;">
+                  <p>Notes: Easy to use, completly free, with free sub domain!</p>
+               </div>
+               <div class="btn-toolbar">
+                  <a class="btn btn-secondary" href="https://www.yola.com/" onclick="#" target="_blank">Get Started</a> 
+               </div>
+            </div>
+         </div>
+         <div class="container">
+            <div class="icon-box">
+               <img src="https://www.jimdo.com/icons/apple-touch-icon-72x72.png" alt="Icon">
+            </div>
+            <div class="content">
+               <div class="title">Jimdo</div>
+               <div class="text-line" style="height: 100%;">
+                  <p>Notes: Drag and drop, online shops, good for business.</p>
+               </div>
+               <div class="btn-toolbar">
+                  <a class="btn btn-secondary" href="https://www.jimdo.com/" onclick="#" target="_blank">Get Started</a> 
+               </div>
+            </div>
+         </div>
+         <div class="container">
+            <div class="icon-box">
+               <img src="https://s1.wp.com/i/favicon.ico?v=1713425267" alt="Icon">
+            </div>
+            <div class="content">
+               <div class="title">Wordpress</div>
+               <div class="text-line" style="height: 100%;">
+                  <p>Notes: Blogging, free sub domain, addons.</p>
+               </div>
+               <div class="btn-toolbar">
+                  <a class="btn btn-secondary" href="https://wordpress.com/" onclick="#" target="_blank">Get Started</a> 
+               </div>
+            </div>
+         </div>
+         <div class="container">
+            <div class="icon-box">
+               <img src="https://www.awardspace.com/wp-content/uploads/2022/09/awardspace-favicon-120x120.png" alt="Icon">
+            </div>
+            <div class="content">
+               <div class="title">AwardSpace</div>
+               <div class="text-line" style="height: 100%;">
+                  <p>Notes: Free hosting with PHP &amp; MySQL, no ads, and free subdomain.</p>
+               </div>
+               <div class="btn-toolbar">
+                  <a class="btn btn-secondary" href="https://www.awardspace.com/" onclick="#" target="_blank">Get Started</a> 
+               </div>
+            </div>
+         </div>
+         <div class="container">
+            <div class="icon-box">
+               <img src="https://droppages.com/favicon.ico" alt="Icon">
+            </div>
+            <div class="content">
+               <div class="title">DropPages</div>
+               <div class="text-line" style="height: 100%;">
+                  <p>Notes: Save content to Dropbox and DropPages will automatically create a web page and publish it online.</p>
+               </div>
+               <div class="btn-toolbar">
+                  <a class="btn btn-secondary" href="https://droppages.com/" onclick="#" target="_blank">Get Started</a> 
+               </div>
+            </div>
+         </div>
+         <div class="container">
+            <div class="icon-box">
+               <img src="https://cdn-cms-s.f-static.net/manager/websites/site123_website/files/logos/brand_files_2020/Icons/Png/Icon_blue.png?v=y84015" alt="Icon">
+            </div>
+            <div class="content">
+               <div class="title">Site123</div>
+               <div class="text-line" style="height: 100%;">
+                  <p>Notes: Easiest free website builder</p>
+               </div>
+               <div class="btn-toolbar">
+                  <a class="btn btn-secondary" href="https://www.site123.com/" onclick="#" target="_blank">Get Started</a> 
+               </div>
+            </div>
+         </div>
+         <div class="container">
+            <div class="icon-box">
+               <img src="https://static.tildacdn.com/tild3435-6532-4565-b865-666139353136/6210favicon_48_48_.ico" alt="Icon">
+            </div>
+            <div class="content">
+               <div class="title">Tilda</div>
+               <div class="text-line" style="height: 100%;">
+                  <p>Notes: Create beautiful websites without any code</p>
+               </div>
+               <div class="btn-toolbar">
+                  <a class="btn btn-secondary" href="https://tilda.cc/" onclick="#" target="_blank">Get Started</a> 
+               </div>
+            </div>
+         </div>
+         <div class="container">
+            <div class="icon-box">
+               <img src="https://design.codeberg.org/logo-kit/favicon.ico" alt="Icon">
+            </div>
+            <div class="content">
+               <div class="title">Codeberg</div>
+               <div class="text-line" style="height: 100%;">
+                  <p>Notes: It's quick, easy, free &amp; fast - just put your open source project's homepage!</p>
+               </div>
+               <div class="btn-toolbar">
+                  <a class="btn btn-secondary" href="https://codeberg.page/" onclick="#" target="_blank">Get Started</a> 
+               </div>
+            </div>
+         </div>
+         <div class="container">
+            <div class="icon-box">
+               <img src="https://fleek.xyz/favicon/favicon.ico" alt="Icon">
+            </div>
+            <div class="content">
+               <div class="title">Fleek</div>
+               <div class="text-line" style="height: 100%;">
+                  <p>Notes: Fleek makes it easy to build websites and apps on the new open web: permissionless, trustless, censorship resistant, and free of centralized gatekeepers!</p>
+               </div>
+               <div class="btn-toolbar">
+                  <a class="btn btn-secondary" href="https://fleek.co/" onclick="#" target="_blank">Get Started</a> 
+               </div>
+            </div>
+         </div>
+         <div class="container">
+            <div class="icon-box">
+               <img src="https://milkshake.app/wp-content/uploads/2019/03/Milkshake-HamburgerMenu-100w.gif" alt="Icon">
+            </div>
+            <div class="content">
+               <div class="title">Milkshake</div>
+               <div class="text-line" style="height: 100%;">
+                  <p>Notes: No cost website that can be used on a mobile device!</p>
+               </div>
+               <div class="btn-toolbar">
+                  <a class="btn btn-secondary" href="https://milkshake.app/" onclick="#" target="_blank">Get Started</a> 
+               </div>
+            </div>
+         </div>
+         <div class="container">
+            <div class="icon-box">
+               <img src="https://www.w3schools.com/favicon.ico" alt="Icon">
+            </div>
+            <div class="content">
+               <div class="title">W3Schools Spaces</div>
+               <div class="text-line" style="height: 100%;">
+                  <p>Notes: Only 1 static site.</p>
+               </div>
+               <div class="btn-toolbar">
+                  <a class="btn btn-secondary" href="https://www.w3schools.com/spaces/index.php" onclick="#" target="_blank">Get Started</a> 
+               </div>
+            </div>
+         </div>
+         <div class="container">
+            <div class="icon-box">
+               <img src="https://www.uhostfull.com/images/logo-company.png" alt="Icon">
+            </div>
+            <div class="content">
+               <div class="title">uHost Full</div>
+               <div class="text-line" style="height: 100%;">
+                  <p>Notes: Unlimited Space, Unlimited Bandwidth, Instant Activation, No Forced Ads!</p>
+               </div>
+               <div class="btn-toolbar">
+                  <a class="btn btn-secondary" href="https://www.uhostfull.com/" onclick="#" target="_blank">Get Started</a> 
+               </div>
+            </div>
+         </div>
+         <div class="container">
+            <div class="icon-box">
+               <img src="https://yunohost.org/assets/img/ynh_logo_roundcorner.png" alt="Icon">
+            </div>
+            <div class="content">
+               <div class="title">YunoHost</div>
+               <div class="text-line" style="height: 100%;">
+                  <p>Notes: Haters gonna host.</p>
+               </div>
+               <div class="btn-toolbar">
+                  <a class="btn btn-secondary" href="https://yunohost.org/#/" onclick="#" target="_blank">Get Started</a> 
+               </div>
+            </div>
+         </div>
+         <div class="container">
+            <div class="icon-box">
+               <img src="https://lenyxo.com/storage/cropped-logo_circle-192x192.webp" alt="Icon">
+            </div>
+            <div class="content">
+               <div class="title">LenyXo</div>
+               <div class="text-line" style="height: 100%;">
+                  <p>Notes: 500 MySQL Databases, 1 FTP Account, Free Subdomains, Automatic Script Installer, Custom errors pages, and much more.</p>
+               </div>
+               <div class="btn-toolbar">
+                  <a class="btn btn-secondary" href="https://lenyxo.com/freehosting/" onclick="#" target="_blank">Get Started</a> 
+               </div>
+            </div>
+         </div>
+         <div class="container">
+            <div class="icon-box">
+               <img src="https://www.atspace.com/wp-content/uploads/2017/10/favicon.png" alt="Icon">
+            </div>
+            <div class="content">
+               <div class="title">AtSpace</div>
+               <div class="text-line" style="height: 100%;">
+                  <p>Notes: 1gb disk space, 5gb monthly traffic.</p>
+               </div>
+               <div class="btn-toolbar">
+                  <a class="btn btn-secondary" href="https://www.atspace.com/" onclick="#" target="_blank">Get Started</a> 
+               </div>
+            </div>
+         </div>
+         <div class="container">
+            <div class="icon-box">
+               <img src="https://leprd.space/favicon.ico" alt="Icon">
+            </div>
+            <div class="content">
+               <div class="title">Leprd</div>
+               <div class="text-line" style="height: 100%;">
+                  <p>Notes: Free for life!</p>
+               </div>
+               <div class="btn-toolbar">
+                  <a class="btn btn-secondary" href="https://leprd.space/" onclick="#" target="_blank">Get Started</a> 
+               </div>
+            </div>
+         </div>
+         <div class="container">
+            <div class="icon-box">
+               <img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/372_Weebly_logo-512.png" alt="Icon">
+            </div>
+            <div class="content">
+               <div class="title">Weebly</div>
+               <div class="text-line" style="height: 100%;">
+                  <p>Notes: Free for life, site builder!</p>
+               </div>
+               <div class="btn-toolbar">
+                  <a class="btn btn-secondary" href="https://www.weebly.com/" onclick="#" target="_blank">Get Started</a> 
+               </div>
+            </div>
+         </div>
+         <div class="container">
+            <div class="icon-box">
+               <img src="https://ssl.gstatic.com/atari/images/public/sites-favicon-2023q4.ico" alt="Icon">
+            </div>
+            <div class="content">
+               <div class="title">Google Sites</div>
+               <div class="text-line" style="height: 100%;">
+                  <p>Notes: Free site builder, you can use your google account to save your sites!</p>
+               </div>
+               <div class="btn-toolbar">
+                  <a class="btn btn-secondary" href="https://sites.google.com/" onclick="#" target="_blank">Get Started</a> 
+               </div>
+            </div>
+         </div>
+      </div>
+      <p></p>
+      <h1></h1>
+      <p></p>
+      <h1></h1>
+      <footer style="border-radius: 15px;">
+         <div class="footer-content">
+            <div class="footer-section about">
+               <h2>About Us</h2>
+               <p>Free Website Hosting List aka. FWHL</p>
+            </div>
+            <div class="footer-section contact">
+               <h2>Contact Us</h2>
+               <p>Discord: myuui / alt: tyug</p>
+            </div>
+            <div class="footer-section links">
+               <h2>Quick Links</h2>
+               <ul>
+                  <li><a href="#">Home</a></li>
+               </ul>
+            </div>
+         </div>
+         <div class="footer-bottom">
+            &copy; 2025 FWHL. All rights reserved.
+         </div>
+      </footer>
+      <script>
+         document.addEventListener("DOMContentLoaded", function() {
+             const containers = document.querySelectorAll('.container');
+             const searchInput = document.getElementById('search-input');
+         
+             // Event listener for search input
+             searchInput.addEventListener('input', filterAndSearch);
+         
+             // Initial filter and search
+             filterAndSearch();
+         
+             function filterAndSearch() {
+                 const searchTerm = searchInput.value.trim().toLowerCase();
+                 const parent = document.querySelector('.grid-container');
+                 
+                 // Clear current displayed content
+                 parent.innerHTML = '';
+         
+                 containers.forEach(container => {
+                     const titleText = container.querySelector('.title').textContent.trim().toLowerCase();
+                     
+                     // Filter by search term based on title
+                     if (titleText.includes(searchTerm)) {
+                         parent.appendChild(container);
+                     }
+                 });
+             }
+         });
+          
+               
+      </script>
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-YKC9DFBX2P"></script>
+      <script src="https://getbootstrap.com/docs/4.0/assets/js/vendor/popper.min.js"></script>
+      <script src="https://getbootstrap.com/docs/4.0/assets/js/vendor/holder.min.js"></script>
+      <script>
+         window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
+         
+         gtag('config', 'G-YKC9DFBX2P');
+      </script>
+   </body>
+</html>
